@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # E-Krushi Data Platform
 
 A Django-based agricultural data management platform that allows farmers to register and submit their agricultural data, while providing administrators with tools to review and approve submissions.
@@ -90,3 +91,6 @@ The platform includes comprehensive form validation:
 - **Database**: SQLite (default, can be changed)
 - **Frontend**: Bootstrap 5.1.3
 - **Authentication**: Django built-in auth system
+=======
+# E-Krushi-Platform
+>>>>>>> 27e4bb5cba954a43ce13e01054a471cd7ed5fa36
