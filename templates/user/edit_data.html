@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Agricultural Data - E-Krushi Platform{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Edit Agricultural Data</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Farm ID</label>
+                            {{ form.farm_id }}
+                            {% if form.farm_id.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.farm_id.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Owner</label>
+                            {{ form.owner }}
+                            {% if form.owner.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.owner.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Farmer Name</label>
+                            {{ form.farmer_name }}
+                            {% if form.farmer_name.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.farmer_name.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Phone Number</label>
+                            {{ form.phone_number }}
+                            {% if form.phone_number.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.phone_number.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Aadhaar Number</label>
+                            {{ form.aadhaar_number }}
+                            {% if form.aadhaar_number.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.aadhaar_number.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Aadhaar Image</label>
+                            {{ form.aadhaar_image }}
+                            {% if form.aadhaar_image.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.aadhaar_image.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Village</label>
+                            {{ form.village }}
+                            {% if form.village.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.village.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">District</label>
+                            {{ form.district }}
+                            {% if form.district.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.district.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">State</label>
+                            {{ form.state }}
+                            {% if form.state.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.state.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Water Source</label>
+                            {{ form.water_source }}
+                            {% if form.water_source.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.water_source.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Irrigation Type</label>
+                            {{ form.irrigation_type }}
+                            {% if form.irrigation_type.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.irrigation_type.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Crop Type</label>
+                            {{ form.crop_type }}
+                            {% if form.crop_type.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.crop_type.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Organic Type</label>
+                            {{ form.organic_type }}
+                            {% if form.organic_type.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.organic_type.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Land Area (acres)</label>
+                            {{ form.land_area }}
+                            {% if form.land_area.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.land_area.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Sowing Date</label>
+                            {{ form.sowing_date }}
+                            {% if form.sowing_date.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.sowing_date.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Expected Harvest Date</label>
+                            {{ form.expected_harvest_date }}
+                            {% if form.expected_harvest_date.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.expected_harvest_date.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'user_dashboard' %}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-success">Update Data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

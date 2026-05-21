@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded mb-4">
+    <h1 class="display-4">Welcome to E-Krushi Data Platform</h1>
+    <p class="lead">A comprehensive platform for managing agricultural data and connecting farmers with technology.</p>
+    <hr class="my-4">
+    <p>Register as a farmer to submit your agricultural data or view public agricultural information.</p>
+    {% if not user.is_authenticated %}
+        <a class="btn btn-success btn-lg" href="{% url 'register' %}" role="button">Get Started</a>
+    {% endif %}
+</div>
+
+{% if approved_data %}
+<h3>Recent Agricultural Data</h3>
+<div class="row">
+    {% for data in approved_data %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ data.farmer_name }}</h5>
+                    <p class="card-text">
+                        <strong>Crop:</strong> {{ data.crop_type }}<br>
+                        <strong>Organic Type:</strong> {{ data.organic_type }}<br>
+                        <strong>Location:</strong> {{ data.village }}, {{ data.district }}<br>
+                        <strong>Land Area:</strong> {{ data.land_area }} acres
+                    </p>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ data.created_at|date:"M d, Y" }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div class="text-center mt-3">
+    <a href="{% url 'public_data' %}" class="btn btn-primary">View All Data</a>
+</div>
+{% endif %}
+{% endblock %}

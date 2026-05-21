@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - E-Krushi Platform{% endblock %}
+
+{% block content %}
+<h2>Admin Dashboard - Manage Agricultural Data</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Farm ID</th>
+                <th>Farmer Name</th>
+                <th>Owner</th>
+                <th>Crop Type</th>
+                <th>Organic Type</th>
+                <th>Village</th>
+                <th>District</th>
+                <th>Land Area</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in page_obj %}
+                <tr>
+                    <td>{{ data.farm_id }}</td>
+                    <td>{{ data.farmer_name }}</td>
+                    <td>{{ data.owner.username }}</td>
+                    <td>{{ data.crop_type }}</td>
+                    <td>{{ data.organic_type }}</td>
+                    <td>{{ data.village }}</td>
+                    <td>{{ data.district }}</td>
+                    <td>{{ data.land_area }} acres</td>
+                    <td>
+                        {% if data.is_approved %}
+                            <span class="badge bg-success">Approved</span>
+                        {% else %}
+                            <span class="badge bg-warning">Pending</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not data.is_approved %}
+                            <a href="{% url 'approve_data' data.pk %}" class="btn btn-sm btn-success">Approve</a>
+                        {% endif %}
+                        <a href="{% url 'edit_farmer_data' data.pk %}" class="btn btn-sm btn-primary">Edit</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="10" class="text-center">No data available</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+{% if page_obj.has_other_pages %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">&laquo; First</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+            {% endif %}
+            
+            <li class="page-item active">
+                <span class="page-link">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+            
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+{% endblock %}
